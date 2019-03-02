@@ -1,4 +1,4 @@
-package quicksort
+package mergesort
 
 import (
 	"fmt"
@@ -8,7 +8,7 @@ import (
 func TestSort(t *testing.T) {
 	data := []int{8, 10, 4, -1, -1, -1, 8, 6, 123123, 5}
 	fmt.Println(data)
-	result := quicksort(data)
+	result := mergesort(data)
 	fmt.Println(result)
 
 	if len(data) != len(result) {
@@ -26,7 +26,7 @@ func TestSort(t *testing.T) {
 func TestSortEdgeCase(t *testing.T) {
 	data := []int{}
 	fmt.Println(data)
-	result := quicksort(data)
+	result := mergesort(data)
 	fmt.Println(result)
 
 	if len(data) != len(result) {
