@@ -1,18 +1,18 @@
 package mergesort
 
-func mergesort(slice []int) []int {
+func Mergesort(slice []int) []int {
 	if len(slice) <= 1 {
 		return slice
 	}
 	pivotIndex := len(slice) / 2
 	leftSlice := slice[:pivotIndex]
 	rightSlice := slice[pivotIndex:]
-	leftSlice = mergesort(leftSlice)
-	rightSlice = mergesort(rightSlice)
-	return Merge(leftSlice, rightSlice)
+	leftSlice = Mergesort(leftSlice)
+	rightSlice = Mergesort(rightSlice)
+	return merge(leftSlice, rightSlice)
 }
 
-func Merge(left, right []int) []int {
+func merge(left, right []int) []int {
 	size, leftIndex, rightIndex := len(left)+len(right), 0, 0
 	slice := make([]int, size, size)
 	for k := 0; k < size; k++ {

@@ -1,6 +1,6 @@
 package quicksort
 
-func quicksort(slice []int) []int {
+func Quicksort(slice []int) []int {
 	if len(slice) <= 1 {
 		return slice
 	}
@@ -15,6 +15,6 @@ func quicksort(slice []int) []int {
 			}
 		}
 	}
-	sliceLess = append(quicksort(sliceLess), slice[pivotIndex])
-	return append(sliceLess, quicksort(sliceMore)...)
+	sliceLess = append(Quicksort(sliceLess), slice[pivotIndex])
+	return append(sliceLess, Quicksort(sliceMore)...)
 }
