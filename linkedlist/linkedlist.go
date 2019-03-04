@@ -5,19 +5,42 @@ type LinkedList struct {
 }
 
 type Node struct {
-	id    string
+	ID    string
 	next  *Node
 	phone int
 }
 
-func (list *LinkedList) insert(new *Node) {
+func (node Node) GetPhone() int {
+	return node.phone
+}
+
+func (node Node) GetID() string {
+	return node.ID
+}
+
+func (list *LinkedList) Search(id string) (Node, bool) {
+	if *list == (LinkedList{}) {
+		return Node{}, false
+	}
+	current := list.start
+	for {
+		if current == nil {
+			return Node{}, false
+		}
+		if current.ID == id {
+			return *current, true
+		}
+	}
+}
+
+func (list *LinkedList) Insert(new *Node) {
 	if *list == (LinkedList{}) {
 		list.start = new
 	} else {
 		current := list.start
 		inserted := false
 		for !inserted {
-			if current.id == new.id {
+			if current.ID == new.ID {
 				list.start.phone = new.phone
 				inserted = true
 			} else if current.next == nil {
@@ -31,11 +54,11 @@ func (list *LinkedList) insert(new *Node) {
 	return
 }
 
-func (list *LinkedList) remove(id string) bool {
+func (list *LinkedList) Remove(ID string) bool {
 	if *list == (LinkedList{}) {
 		return false
 	}
-	if list.start.id == id {
+	if list.start.ID == ID {
 		list.start = list.start.next
 		return true
 	}
@@ -43,7 +66,7 @@ func (list *LinkedList) remove(id string) bool {
 	for {
 		if current.next == nil {
 			return false
-		} else if current.next.id == id {
+		} else if current.next.ID == ID {
 			current.next = current.next.next
 			return true
 		} else {

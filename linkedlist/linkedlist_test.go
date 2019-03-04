@@ -7,34 +7,34 @@ import (
 func TestNodeInsert(t *testing.T) {
 	list := LinkedList{}
 
-	id := "John Smith"
+	ID := "John Smith"
 	phone := 7322983360
-	node := &Node{id: id, phone: phone}
-	list.insert(node)
-	if list.start.id != id {
-		t.Error("didn't get the correct id")
+	node := &Node{ID: ID, phone: phone}
+	list.Insert(node)
+	if list.start.ID != ID {
+		t.Error("dIDn't get the correct ID")
 	}
 	if list.start.phone != phone {
-		t.Error("didn't get the correct phone number")
+		t.Error("dIDn't get the correct phone number")
 	}
 	phone = 92321355
-	node = &Node{id: id, phone: phone}
-	list.insert(node)
+	node = &Node{ID: ID, phone: phone}
+	list.Insert(node)
 	if node.phone != phone {
-		t.Error("didn't get the correct phone number")
+		t.Error("dIDn't get the correct phone number")
 	}
 	phone = 9232135523
-	id = "Swag Micheal Junior"
+	ID = "Swag Micheal Junior"
 
-	node = &Node{id: id, phone: phone}
-	list.insert(node)
+	node = &Node{ID: ID, phone: phone}
+	list.Insert(node)
 	if list.start.next.phone != phone {
-		t.Error("didn't get the correct phone number")
+		t.Error("dIDn't get the correct phone number")
 	}
-	node = &Node{id: "Zach  Paul", phone: 8123123}
-	list.insert(node)
-	node = &Node{id: "Jake Monagan", phone: 123123123}
-	list.insert(node)
+	node = &Node{ID: "Zach  Paul", phone: 8123123}
+	list.Insert(node)
+	node = &Node{ID: "Jake Monagan", phone: 123123123}
+	list.Insert(node)
 	if list.start.next.next.next == nil {
 		t.Error("should not of gotten nil node")
 	}
@@ -45,24 +45,24 @@ func TestNodeInsert(t *testing.T) {
 
 func TestRemove(t *testing.T) {
 	list := LinkedList{}
-	removeID := "Dave Donnelly"
+	RemoveID := "Dave Donnelly"
 	replacementNodeID := "Tim Burke"
-	list.insert(&Node{id: removeID, phone: 2319203813})
-	if !list.remove(removeID) {
-		t.Error("should of removed ", removeID)
+	list.Insert(&Node{ID: RemoveID, phone: 2319203813})
+	if !list.Remove(RemoveID) {
+		t.Error("should of Removed ", RemoveID)
 	}
-	list.insert(&Node{id: "Zach  Paul", phone: 8123123})
-	list.insert(&Node{id: "Jake Monagan", phone: 123123123})
-	list.insert(&Node{id: "Tom Pitt", phone: 345235})
-	list.insert(&Node{id: removeID, phone: 2319203813})
-	list.insert(&Node{id: replacementNodeID, phone: 345235})
-	if !list.remove(removeID) {
-		t.Error("should of removed ", removeID)
+	list.Insert(&Node{ID: "Zach  Paul", phone: 8123123})
+	list.Insert(&Node{ID: "Jake Monagan", phone: 123123123})
+	list.Insert(&Node{ID: "Tom Pitt", phone: 345235})
+	list.Insert(&Node{ID: RemoveID, phone: 2319203813})
+	list.Insert(&Node{ID: replacementNodeID, phone: 345235})
+	if !list.Remove(RemoveID) {
+		t.Error("should of Removed ", RemoveID)
 	}
-	if list.start.next.next.next == nil || list.start.next.next.next.id != replacementNodeID {
+	if list.start.next.next.next == nil || list.start.next.next.next.ID != replacementNodeID {
 		t.Error("should of had time burke as the element")
 	}
-	if list.remove("random string") {
-		t.Error("should not of removed ", removeID)
+	if list.Remove("random string") {
+		t.Error("should not of Removed ", RemoveID)
 	}
 }
