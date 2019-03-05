@@ -97,7 +97,7 @@ func (v *Vertex) reachable(endID string) bool {
 	}
 	v.visted = true
 	current := v.edges
-	for i := 0; i < 30; i++ {
+	for {
 		if current == nil {
 			return false
 		}
@@ -106,5 +106,4 @@ func (v *Vertex) reachable(endID string) bool {
 		}
 		current = current.next
 	}
-	return false
 }

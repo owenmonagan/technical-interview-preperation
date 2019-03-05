@@ -100,21 +100,28 @@ func TestReachable(t *testing.T) {
 	idB := "b"
 	idC := "c"
 	idD := "D"
+	idZ := "Z"
+	idX := "X"
 
 	graph.addVertex(&Vertex{ID: idA})
 	graph.addVertex(&Vertex{ID: idB})
 	graph.addVertex(&Vertex{ID: idC})
 	graph.addVertex(&Vertex{ID: idD})
+	graph.addVertex(&Vertex{ID: idZ})
+	graph.addVertex(&Vertex{ID: idX})
 
 	if graph.isReachable(graph.get(idA), graph.get(idB)) {
 		t.Error("should not be reachable")
 	}
-	graph.addEdge(idA, &Edge{to: graph.get(idB)})
-	if !graph.isReachable(graph.get(idA), graph.get(idB)) {
+	graph.addEdge(idA, &Edge{to: graph.get(idZ)})
+
+	graph.addEdge(idA, &Edge{to: graph.get(idX)})
+	if !graph.isReachable(graph.get(idA), graph.get(idX)) {
 		t.Error("should be reachable")
 	}
-	graph.addEdge(idB, &Edge{to: graph.get(idC)})
-	graph.addEdge(idC, &Edge{to: graph.get(idD)})
+	graph.addEdge(idA, &Edge{to: graph.get(idC)})
+	graph.addEdge(idC, &Edge{to: graph.get(idB)})
+	graph.addEdge(idB, &Edge{to: graph.get(idD)})
 	if !graph.isReachable(graph.get(idA), graph.get(idD)) {
 		t.Error("should be reachable")
 	}
