@@ -31,6 +31,9 @@ func TestAddVertex(t *testing.T) {
 	if graph.vertex.next.next.ID != idC {
 		t.Error("didn't add the vertext")
 	}
+	if graph.addVertex(&Vertex{ID: idC}) {
+		t.Error("should not of been able to add an existing vertex")
+	}
 }
 
 func TestSearchVertex(t *testing.T) {
@@ -84,6 +87,10 @@ func TestAddEdge(t *testing.T) {
 	if graph.get(idA).edges.next.next.to.ID != idD {
 		t.Error("should of gotten this vertex")
 	}
+
 	graph.addEdge(idC, &Edge{to: graph.get(idB)})
+	if graph.addEdge(idC, &Edge{to: graph.get(idB)}) {
+		t.Error("should not of been able to add an existing edge")
+	}
 
 }
