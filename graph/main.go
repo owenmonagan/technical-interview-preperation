@@ -74,3 +74,37 @@ func (graph *Graph) addEdge(id string, e *Edge) bool {
 		}
 	}
 }
+
+func (graph *Graph) resetVisted() {
+	current := graph.vertex
+	for current != nil {
+		current.visted = false
+		current = current.next
+	}
+}
+
+func (graph *Graph) isReachable(s, e *Vertex) bool {
+	graph.resetVisted()
+	return s.reachable(e.ID)
+}
+
+func (v *Vertex) reachable(endID string) bool {
+	if v.visted {
+		return false
+	}
+	if v.ID == endID {
+		return true
+	}
+	v.visted = true
+	current := v.edges
+	for i := 0; i < 30; i++ {
+		if current == nil {
+			return false
+		}
+		if current.to.reachable(endID) {
+			return true
+		}
+		current = current.next
+	}
+	return false
+}

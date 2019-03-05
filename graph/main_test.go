@@ -92,5 +92,30 @@ func TestAddEdge(t *testing.T) {
 	if graph.addEdge(idC, &Edge{to: graph.get(idB)}) {
 		t.Error("should not of been able to add an existing edge")
 	}
+}
 
+func TestReachable(t *testing.T) {
+	graph := New()
+	idA := "a"
+	idB := "b"
+	idC := "c"
+	idD := "D"
+
+	graph.addVertex(&Vertex{ID: idA})
+	graph.addVertex(&Vertex{ID: idB})
+	graph.addVertex(&Vertex{ID: idC})
+	graph.addVertex(&Vertex{ID: idD})
+
+	if graph.isReachable(graph.get(idA), graph.get(idB)) {
+		t.Error("should not be reachable")
+	}
+	graph.addEdge(idA, &Edge{to: graph.get(idB)})
+	if !graph.isReachable(graph.get(idA), graph.get(idB)) {
+		t.Error("should be reachable")
+	}
+	graph.addEdge(idB, &Edge{to: graph.get(idC)})
+	graph.addEdge(idC, &Edge{to: graph.get(idD)})
+	if !graph.isReachable(graph.get(idA), graph.get(idD)) {
+		t.Error("should be reachable")
+	}
 }
